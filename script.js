@@ -1,8 +1,8 @@
-// Rectangle class
+// Rectangle class definition
 class Rectangle {
   constructor(width, height) {
     if (width <= 0 || height <= 0) {
-      throw new Error("Width and height must be positive integers");
+      throw new Error("Width and height must be positive integers.");
     }
     this._width = width;
     this._height = height;
@@ -24,34 +24,27 @@ class Rectangle {
   }
 }
 
-// Square class
+// Square class definition (inherits from Rectangle)
 class Square extends Rectangle {
   constructor(side) {
     if (side <= 0) {
-      throw new Error("Side must be a positive integer");
+      throw new Error("Side must be a positive integer.");
     }
-    // Call parent constructor with width and height as side
-    super(side, side);
+    super(side, side); // Call Rectangle constructor with width = height = side
+    this._side = side;
   }
 
   // Method to calculate perimeter
   getPerimeter() {
-    return 4 * this._width;
+    return 4 * this._side;
   }
 }
 
-// Example usage:
-const rectangle = new Rectangle(5, 10);
-console.log(rectangle.width);     // 5
-console.log(rectangle.height);    // 10
-console.log(rectangle.getArea()); // 50
-
-const square = new Square(7);
-console.log(square.width);        // 7
-console.log(square.height);       // 7
-console.log(square.getArea());    // 49
-console.log(square.getPerimeter());// 28
-
-// Do not change the code below this line
+// Expose the classes to window for Cypress tests
 window.Rectangle = Rectangle;
 window.Square = Square;
+
+// Example usage (can be commented out for tests)
+const rectangle = new Rectangle(5, 10);
+
+const square = new Square(7);
